@@ -24,3 +24,23 @@ export const getTodo = (updateRedux)=>{
         console.log(error);
     })
 }
+
+export const deleteTodo = (id) =>{
+    axios.delete(URL+'/'+id)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+}
+
+export const updateTodo = (todo) => {
+    axios.put(URL+'/'+todo.id,todo,todo)
+    .then((response)=>{
+        console.log(response);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+}
