@@ -10,10 +10,18 @@ class TodoForm extends React.Component {
 
     onSubmit = () => {
         let req = {content:this.state.text,status:false}
-        postTodo(req)
-        this.props.addTodo({text:this.state.text,isDone:false});
-        getTodo(this.props.updateTodoList)
+        postTodo(req).then((res)=>{
+            // this.props.addTodo({text:this.state.text,isDone:false});
+            getTodo().then((res) => {
+                this.props.updateTodoList(res.data);
+            })
+        })
+    }
 
+    componentDidMount(){
+        getTodo().then((res) => {
+            this.props.updateTodoList(res.data);
+        })
     }
 
     onChange = (event) => {
